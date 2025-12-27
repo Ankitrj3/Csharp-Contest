@@ -2,9 +2,10 @@
 {
     class Program
     {
-        public static void Main(string [] args)
+        public static void Main()
         {
-            
+            DataBank db = new DataBank();
+            db.Sale();
         }
     }
 }

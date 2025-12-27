@@ -1,5 +1,8 @@
 ﻿namespace Contest2
 {
+    // <Summary>
+    // Coding Assessment — MediSure Clinic: Simple Patient Billing 
+    // </Summary>
     class Program
     {
         static void Main(string[] args)

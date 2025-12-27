@@ -13,6 +13,12 @@ namespace FirstContest
         public float buyPrice{get; set;}
         public float sellPrice{get; set;}
 
+        // Declaration of Default Constructor
+        public SaleTransaction()
+        {
+            
+        }
+
         // Constructor Declaration
         public SaleTransaction(string invoice, string customer, string item, int quantity, float purchase, float selling)
         {

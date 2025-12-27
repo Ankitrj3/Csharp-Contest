@@ -5,7 +5,8 @@
     // </Summary>
     class Program
     {
-        static void Main(string[] args)
+        // Main Function 
+        public static void Main(string[] args)
         {
             bool isRunning = true;
             
@@ -13,7 +14,7 @@
             {
                 displayMenu();
                 string option = Console.ReadLine()?.Trim() ?? "";
-                
+                // Switch Statement for choosing options
                 switch (option)
                 {
                     case "1":
@@ -40,7 +41,7 @@
                 }
             }
         }
-
+        // Display Function
         static void displayMenu()
         {
             Console.WriteLine("================== MediSure Clinic Billing ==================");

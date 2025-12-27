@@ -2,6 +2,7 @@ namespace Contest2
 {
     public class PatientBill
     {
+        // Attributes Declaration
         public string billNo { get; set; }
         public string patientName { get; set; }
         public bool isInsured { get; set; }
@@ -12,10 +13,12 @@ namespace Contest2
         public decimal discountAmt { get; set; }
         public decimal finalAmount { get; set; }
 
+        // Default Constructor
         public PatientBill()
         {
         }
 
+        // Constructor
         public PatientBill(string id, string name, bool insurance, 
                           decimal consultation, decimal lab, decimal medicine)
         {
@@ -28,6 +31,7 @@ namespace Contest2
             calculateBill();
         }
 
+        // Function of CalculateBill
         public void calculateBill()
         {
             totalAmount = consultFee + labCharges + medicineCharges;

@@ -9,7 +9,7 @@ namespace Contest2
     {
         #region Properties
         /// <summary>
-        /// Unique identifier for the bill
+        /// BillNo for the bill
         /// </summary>
         public string billNo { get; set; }
         
@@ -26,32 +26,32 @@ namespace Contest2
         /// <summary>
         /// Fee charged for doctor consultation
         /// </summary>
-        public decimal consultFee { get; set; }
+        public double consultFee { get; set; }
         
         /// <summary>
         /// Charges for laboratory tests and procedures
         /// </summary>
-        public decimal labCharges { get; set; }
+        public double labCharges { get; set; }
         
         /// <summary>
-        /// Charges for medicines and prescriptions
+        /// Charges for medicines 
         /// </summary>
-        public decimal medicineCharges { get; set; }
+        public double medicineCharges { get; set; }
         
         /// <summary>
         /// Total amount before any discounts (sum of all charges)
         /// </summary>
-        public decimal totalAmount { get; set; }
+        public double totalAmount { get; set; }
         
         /// <summary>
         /// Discount amount applied (10% for insured patients)
         /// </summary>
-        public decimal discountAmt { get; set; }
+        public double discountAmt { get; set; }
         
         /// <summary>
         /// Final amount to be paid after applying discounts
         /// </summary>
-        public decimal finalAmount { get; set; }
+        public double finalAmount { get; set; }
         #endregion
 
         #region Constructors
@@ -72,7 +72,7 @@ namespace Contest2
         /// <param name="consultation">Consultation fee amount</param>
         /// <param name="lab">Laboratory charges amount</param>
         /// <param name="medicine">Medicine charges amount</param>
-        public PatientBill(string id, string name, bool insurance, decimal consultation, decimal lab, decimal medicine)
+        public PatientBill(string id, string name, bool insurance, double consultation, double lab, double medicine)
         {
             billNo = id;
             patientName = name;
@@ -98,7 +98,7 @@ namespace Contest2
             // Apply 10% discount for insured patients
             if (isInsured)
             {
-                discountAmt = totalAmount * 0.10m; // 10% discount
+                discountAmt = totalAmount * 0.10; // 10% discount
             }
             else
             {

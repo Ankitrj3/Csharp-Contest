@@ -27,7 +27,7 @@ namespace Contest2
         public DataBank()
         {
             // Initialize with sample data for testing/demonstration
-            currentBill = new PatientBill("BILL1001", "Divya", true, 600.00m, 250.00m, 150.00m);
+            currentBill = new PatientBill("BILL1001", "Divya", true, 600.00, 250.00, 150.00);
             billExists = true;
         }
         #endregion
@@ -61,7 +61,7 @@ namespace Contest2
 
             // Collect and validate consultation fee
             Console.WriteLine("Enter Consultation Fee:");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal consultFee) || consultFee <= 0)
+            if (!double.TryParse(Console.ReadLine(), out double consultFee) || consultFee <= 0)
             {
                 Console.WriteLine("Consultation Fee must be greater than 0. Please try again.");
                 return;
@@ -69,7 +69,7 @@ namespace Contest2
 
             // Collect and validate lab charges
             Console.WriteLine("Enter Lab Charges:");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal labFee) || labFee < 0)
+            if (!double.TryParse(Console.ReadLine(), out double labFee) || labFee < 0)
             {
                 Console.WriteLine("Lab Charges must be 0 or greater. Please try again.");
                 return;
@@ -77,7 +77,7 @@ namespace Contest2
 
             // Collect and validate medicine charges
             Console.WriteLine("Enter Medicine Charges:");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal medFee) || medFee < 0)
+            if (!double.TryParse(Console.ReadLine(), out double medFee) || medFee < 0)
             {
                 Console.WriteLine("Medicine Charges must be 0 or greater. Please try again.");
                 return;

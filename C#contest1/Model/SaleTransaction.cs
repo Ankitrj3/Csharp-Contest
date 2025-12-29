@@ -1,25 +1,62 @@
 namespace FirstContest
 {
-    // <Summary>
-    // Coding Assessment — QuickMart Traders: Profit Calculator
-    // </Summary>
+    /// <summary>
+    /// Coding Assessment — QuickMart Traders: Profit Calculator
+    /// Represents a sales transaction with purchase and selling details.
+    /// Used to calculate profit/loss for individual transactions.
+    /// </summary>
     class SaleTransaction
     {
-        // Attributes declaration
+        #region Properties
+        /// <summary>
+        /// Unique identifier for the invoice/transaction
+        /// </summary>
         public string? invoiceId{get; set;}
+        
+        /// <summary>
+        /// Name of the customer making the purchase
+        /// </summary>
         public string? customerName{get; set;}
+        
+        /// <summary>
+        /// Name of the item being sold
+        /// </summary>
         public string? itemName{get; set;}
+        
+        /// <summary>
+        /// Quantity of items sold in this transaction
+        /// </summary>
         public int qty{get; set;}
+        
+        /// <summary>
+        /// Purchase price per unit 
+        /// </summary>
         public float buyPrice{get; set;}
+        
+        /// <summary>
+        /// Selling price per unit 
+        /// </summary>
         public float sellPrice{get; set;}
+        #endregion
 
-        // Declaration of Default Constructor
+        #region Constructors
+        /// <summary>
+        /// Default constructor - initializes empty SaleTransaction object
+        /// </summary>
         public SaleTransaction()
         {
             
         }
 
-        // Constructor Declaration
+        /// <summary>
+        /// Parameterized constructor to create a complete sales transaction
+        /// </summary>
+        /// <param name="invoice">Invoice ID for the transaction</param>
+        /// <param name="customer">Customer name</param>
+        /// <param name="item">Item name being sold</param>
+        /// <param name="quantity">Quantity of items</param>
+        /// <param name="purchase">Purchase price per unit</param>
+        /// <param name="selling">Selling price per unit</param>
         public SaleTransaction(string invoice, string customer, string item, int quantity, float purchase, float selling)
         {
             invoiceId = invoice;
@@ -29,7 +66,6 @@ namespace FirstContest
             buyPrice = purchase;
             sellPrice = selling;
         }
-
-
+        #endregion
     }
 }

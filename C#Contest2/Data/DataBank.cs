@@ -1,19 +1,46 @@
 namespace Contest2
 {
-    public static class DataBank
+    /// <summary>
+    /// Data management class for the MediSure Clinic billing system.
+    /// Handles all operations related to patient bills including creation, viewing, and deletion.
+    /// Maintains the current bill in memory and provides sample data initialization.
+    /// </summary>
+    public class DataBank
     {
-        public static PatientBill? currentBill { get; set; }
-        public static bool billExists { get; set; } = false;
+        #region Properties
+        /// <summary>
+        /// Instance property to hold the current patient bill
+        /// </summary>
+        public PatientBill? currentBill { get; set; }
+        
+        /// <summary>
+        /// Flag indicating whether a bill currently exists in the system
+        /// </summary>
+        public bool billExists { get; set; } = false;
+        #endregion
 
-        static DataBank()
+        #region Constructor
+        /// <summary>
+        /// Constructor - initializes the DataBank with sample data.
+        /// Creates a default bill for demonstration purposes.
+        /// </summary>
+        public DataBank()
         {
-            // Initialize with sample data
+            // Initialize with sample data for testing/demonstration
             currentBill = new PatientBill("BILL1001", "Divya", true, 600.00m, 250.00m, 150.00m);
             billExists = true;
         }
+        #endregion
 
-        public static void addNewBill()
+        #region Public Methods
+        /// <summary>
+        /// Creates a new patient bill by collecting user input.
+        /// Validates all inputs and calculates the bill automatically.
+        /// Replaces any existing bill with the new one.
+        /// </summary>
+        public void addNewBill()
         {
+            // Collect bill ID with validation
             Console.WriteLine("Enter Bill Id:");
             string billNo = Console.ReadLine()?.Trim() ?? "";
             
@@ -23,13 +50,16 @@ namespace Contest2
                 return;
             }
 
+            // Collect patient name
             Console.WriteLine("Enter Patient Name:");
             string name = Console.ReadLine()?.Trim() ?? "";
 
+            // Collect insurance status (Y/N input)
             Console.WriteLine("Is the patient insured? (Y/N):");
             string insured = Console.ReadLine()?.Trim().ToUpper() ?? "";
-            bool insurance = insured == "Y";
+            bool insurance = insured == "Y"; // Convert Y to true, anything else to false
 
+            // Collect and validate consultation fee
             Console.WriteLine("Enter Consultation Fee:");
             if (!decimal.TryParse(Console.ReadLine(), out decimal consultFee) || consultFee <= 0)
             {
@@ -37,6 +67,7 @@ namespace Contest2
                 return;
             }
 
+            // Collect and validate lab charges
             Console.WriteLine("Enter Lab Charges:");
             if (!decimal.TryParse(Console.ReadLine(), out decimal labFee) || labFee < 0)
             {
@@ -44,6 +75,7 @@ namespace Contest2
                 return;
             }
 
+            // Collect and validate medicine charges
             Console.WriteLine("Enter Medicine Charges:");
             if (!decimal.TryParse(Console.ReadLine(), out decimal medFee) || medFee < 0)
             {
@@ -51,23 +83,32 @@ namespace Contest2
                 return;
             }
 
+            // Create new bill with validated inputs
             currentBill = new PatientBill(billNo, name, insurance, consultFee, labFee, medFee);
             billExists = true;
 
+            // Display success message with calculated amounts
             Console.WriteLine("Bill created successfully.");
             Console.WriteLine($"Gross Amount: {currentBill.totalAmount:F2}");
             Console.WriteLine($"Discount Amount: {currentBill.discountAmt:F2}");
             Console.WriteLine($"Final Payable: {currentBill.finalAmount:F2}");
         }
 
-        public static void showBill()
+        /// <summary>
+        /// Displays the details of the current patient bill.
+        /// Shows all bill information in a formatted layout.
+        /// Checks if a bill exists before displaying.
+        /// </summary>
+        public void showBill()
         {
+            // Check if any bill exists
             if (!billExists || currentBill == null)
             {
                 Console.WriteLine("No bill available. Please create a new bill first.");
                 return;
             }
 
+            // Display formatted bill details
             Console.WriteLine("----------- Last Bill -----------");
             Console.WriteLine($"BillId: {currentBill.billNo}");
             Console.WriteLine($"Patient: {currentBill.patientName}");
@@ -81,11 +122,16 @@ namespace Contest2
             Console.WriteLine("--------------------------------");
         }
 
-        public static void deleteBill()
+        /// <summary>
+        /// Deletes/clears the current patient bill from memory.
+        /// Resets both the bill object and the existence flag.
+        /// </summary>
+        public void deleteBill()
         {
-            currentBill = null;
-            billExists = false;
+            currentBill = null; // Clear the current bill
+            billExists = false; // Update existence flag
             Console.WriteLine("Last bill cleared.");
         }
+        #endregion
     }
 }

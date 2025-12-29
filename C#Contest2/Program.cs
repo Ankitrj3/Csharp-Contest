@@ -1,47 +1,65 @@
 ﻿namespace Contest2
 {
-    // <Summary>
-    // Coding Assessment — MediSure Clinic: Simple Patient Billing 
-    // </Summary>
+    /// <summary>
+    /// Coding Assessment — MediSure Clinic: Simple Patient Billing 
+    /// Main entry point for the MediSure Clinic billing application.
+    /// Provides a menu-driven interface for managing patient bills.
+    /// </summary>
     class Program
     {
-        // Main Function 
+        #region Main Entry Point
+        /// <summary>
+        /// Main method - entry point of the MediSure Clinic billing application.
+        /// Displays menu options and handles user interactions in a loop.
+        /// </summary>
+        /// <param name="args">Command line arguments (not used)</param>
         public static void Main(string[] args)
         {
-            bool isRunning = true;
+            // Create an instance of DataBank to handle billing operations
+            DataBank dataBank = new DataBank();
+            bool isRunning = true; // Flag to control the main application loop
             
+            // Main application loop - continues until user chooses to exit
             while (isRunning)
             {
-                displayMenu();
-                string option = Console.ReadLine()?.Trim() ?? "";
-                // Switch Statement for choosing options
+                displayMenu(); // Show menu options to user
+                string option = Console.ReadLine()?.Trim() ?? ""; // Get user input with null safety
+                
+                // Process user selection using switch statement
                 switch (option)
                 {
                     case "1":
-                        DataBank.addNewBill();
+                        dataBank.addNewBill(); // Create a new patient bill
                         break;
                     case "2":
-                        DataBank.showBill();
+                        dataBank.showBill(); // Display the current bill
                         break;
                     case "3":
-                        DataBank.deleteBill();
+                        dataBank.deleteBill(); // Clear/delete the current bill
                         break;
                     case "4":
                         Console.WriteLine("Thank you. Application closed normally.");
-                        isRunning = false;
+                        isRunning = false; // Exit the application
                         break;
                     default:
                         Console.WriteLine("Invalid option. Please select a valid menu option (1-4).");
                         break;
                 }
                 
+                // Add separator line between menu iterations (except when exiting)
                 if (isRunning)
                 {
                     Console.WriteLine("------------------------------------------------------------");
                 }
             }
         }
-        // Display Function
+        #endregion
+        
+        #region Helper Methods
+        /// <summary>
+        /// Displays the main menu options for the MediSure Clinic billing system.
+        /// Shows a formatted menu with all available operations.
+        /// </summary>
         static void displayMenu()
         {
             Console.WriteLine("================== MediSure Clinic Billing ==================");
@@ -51,5 +69,6 @@
             Console.WriteLine("4. Exit");
             Console.WriteLine("Enter your option:");
         }
+        #endregion
     }
 }

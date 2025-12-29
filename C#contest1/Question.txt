@@ -1,4 +1,3 @@
-Current Project: Databricks & SQL Assessment Banks
 Coding Assessment — QuickMart Traders: Profit Calculator (No Arrays / No Lists / No Generics / No SQL)
 
 Background

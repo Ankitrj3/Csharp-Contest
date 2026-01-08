@@ -1,0 +1,87 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C#Contest2", "C#Contest2\C#Contest2.csproj", "{479E3DD7-98DD-8618-502C-B82A59A102E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalCashFlowSystem", "DigitalCashFlowSystem\DigitalCashFlowSystem.csproj", "{399DB129-6038-E3DB-8525-F37EE01556BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem", "LibraryManagementSystem\LibraryManagementSystem.csproj", "{0B6D0B5A-1C24-3116-5E95-BA05C786EAA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C#contest1", "C#contest1\C#contest1.csproj", "{79D4F755-FB1E-7433-54BC-986032C2AF4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{479E3DD7-98DD-8618-502C-B82A59A102E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479E3DD7-98DD-8618-502C-B82A59A102E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479E3DD7-98DD-8618-502C-B82A59A102E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479E3DD7-98DD-8618-502C-B82A59A102E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399DB129-6038-E3DB-8525-F37EE01556BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399DB129-6038-E3DB-8525-F37EE01556BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399DB129-6038-E3DB-8525-F37EE01556BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{399DB129-6038-E3DB-8525-F37EE01556BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6D0B5A-1C24-3116-5E95-BA05C786EAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6D0B5A-1C24-3116-5E95-BA05C786EAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6D0B5A-1C24-3116-5E95-BA05C786EAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6D0B5A-1C24-3116-5E95-BA05C786EAA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D4F755-FB1E-7433-54BC-986032C2AF4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D4F755-FB1E-7433-54BC-986032C2AF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D4F755-FB1E-7433-54BC-986032C2AF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D4F755-FB1E-7433-54BC-986032C2AF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16E2CF7D-F361-45AF-87F9-6692FC740C30}
+	EndGlobalSection
+EndGlobal
+
+
+
+
+
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Ledger<IncomeTransaction> incomeLedger = new Ledger<IncomeTransaction>();
+        Ledger<ExpenseTransaction> expenseLedger = new Ledger<ExpenseTransaction>();
+
+        dynamic incomes = DataBank.GetIncomeData();
+        dynamic expenses = DataBank.GetExpenseData();
+
+        foreach(dynamic income in incomes)
+        {
+            incomeLedger.AddEntry(income);
+        }
+        foreach(dynamic expense in expenses)
+        {
+            expenseLedger.AddEntry(expense);
+        }
+
+        dynamic incomeTotal = incomeLedger.CalculateTotal();
+        dynamic expenseTotal = expenseLedger.CalculateTotal();
+        double RemainingAmount = Helper.CalculateRemaining(incomeTotal,expenseTotal);
+        Console.WriteLine($"Remaining Amount After Expense : {RemainingAmount}");
+
+        dynamic incomeHistory = incomeLedger.GetAll();
+        dynamic expenseHistory = expenseLedger.GetAll();
+        
+        foreach(dynamic incomeHis in incomeHistory)
+        {
+            Console.WriteLine(incomeHis);
+        }
+        foreach(dynamic expenseHis in expenseHistory)
+        {
+            Console.WriteLine(expenseHis);
+        }
+    }
+}

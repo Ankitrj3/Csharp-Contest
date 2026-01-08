@@ -55,5 +55,13 @@ class Program
         {
             Console.WriteLine(expenseHis.GetSummary());
         }
+        // Display the History of Transaction based on Date
+        string DatePassHistory = "01/01/2026";
+        dynamic pastIncomeHistory = incomeLedger.GetTransactionsByDate(DateOnly.Parse(DatePassHistory));
+        foreach(dynamic IncomeByDate in pastIncomeHistory)
+        {
+            Console.WriteLine("Income Get By Date");
+            Console.WriteLine(IncomeByDate.GetSummary());
+        }
     }
 }

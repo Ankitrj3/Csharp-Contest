@@ -11,12 +11,12 @@ namespace Contest2
         /// <summary>
         /// BillNo for the bill
         /// </summary>
-        public string billNo { get; set; }
+        public required string billNo { get; set; }
         
         /// <summary>
         /// Name of the patient
         /// </summary>
-        public string patientName { get; set; }
+        public required string patientName { get; set; }
         
         /// <summary>
         /// Indicates whether the patient has insurance coverage
